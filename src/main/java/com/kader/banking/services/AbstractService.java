@@ -2,8 +2,8 @@ package com.kader.banking.services;
 
 public interface AbstractService<T> {
 
-    int save(T dto);
+    Integer save(T dto);
     List<T> findAll();
-    T findbyId(int id);
-    void delete(int id);
+    T findbyId(Integer id);
+    void delete(Integer id);
 }

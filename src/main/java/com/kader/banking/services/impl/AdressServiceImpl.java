@@ -23,14 +23,14 @@ public class AdressServiceImpl implements AdressService{
     }
 
     @Override
-    public AdressDto findById(int id){
+    public AdressDto findById(Integer id){
         return repository.findById(id)
                 .map(AdressDto::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException("No adress was found with the provided ID : " + id));
     }
 
     @Override
-    public void delete(int id){
+    public void delete(Integer id){
 
         return repository.deleteById(id);
     }

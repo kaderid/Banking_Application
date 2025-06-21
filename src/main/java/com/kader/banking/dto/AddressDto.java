@@ -7,13 +7,13 @@ package com.kader.banking.dto;
 @AllArgsConstructor
 public class AddressDto {
 
-    private int id;
+    private Integer id;
     private String street;
-    private int houseNumber;
-    private int zipCode;
+    private Integer houseNumber;
+    private Integer zipCode;
     private String city;
     private String country;
-    private int userId;
+    private Integer userId;
 
     public static AddressDto fromEntity(Address address){
         return addressDto.builder()

@@ -8,7 +8,7 @@ package com.kader.banking.dto;
 public class AccountDto {
 
 
-    private int id;
+    private Integer id;
     private String iban;
     private UserDto user;
 

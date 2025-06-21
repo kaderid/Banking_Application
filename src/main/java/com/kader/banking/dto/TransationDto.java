@@ -9,8 +9,6 @@ public class TransationDto {
 
     private int id;
     @Postive
-    @Max(value = 1000000)
-    @Min(value = 10)
     private BigDecimal amount;
 
     private TransactionType type;

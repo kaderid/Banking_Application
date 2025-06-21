@@ -23,14 +23,14 @@ public class UserServiceImpl UserService{
     }
 
     @Override
-    public UserDto findById(int id){
+    public UserDto findById(Integer id){
         return repository.findById(id)
                 .map(UserDto::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException("No user was found with the provided ID : " + id));
     }
 
     @Override
-    public void delete(int id){
+    public void delete(Integer id){
 
         return repository.deleteById(id);
     }

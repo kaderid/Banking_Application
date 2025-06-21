@@ -6,7 +6,7 @@ package com.kader.banking.dto;
 @AllArgsConstructor
 public class ContactDto {
 
-    private int id;
+    private Integer id;
 
     private String firstname;
     private String lastname;

@@ -18,8 +18,8 @@ import jakarta.persistence.Id;
 public class Address extends AbstractEntity {
 
     private String street;
-    private int houseNumber;
-    private int zipCode;
+    private Integer houseNumber;
+    private Integer zipCode;
     private String city;
     private String country;
 

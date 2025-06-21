@@ -7,7 +7,7 @@ package com.kader.banking.dto;
 @AllArgsConstructor
 public class UserDto {
 
-    private int id;
+    private Integer id;
     @NotNull
     @NotEmpty
     @NotBlank

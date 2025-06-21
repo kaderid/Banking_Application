@@ -24,14 +24,14 @@ public class ContactServiceImpl implements ContactService{
     }
 
     @Override
-    public ContactDto findById(int id){
+    public ContactDto findById(Integer id){
         return repository.findById(id)
                 .map(ContactDto::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException("No contact was found with the provided ID : " + id));
     }
 
     @Override
-    public void delete(int id){
+    public void delete(Integer id){
 
         return repository.deleteById(id);
     }

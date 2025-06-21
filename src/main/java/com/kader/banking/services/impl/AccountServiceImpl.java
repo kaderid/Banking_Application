@@ -34,14 +34,14 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public AccountDto findById(int id){
+    public AccountDto findById(Integer id){
         return repository.findById(id)
                 .map(AccountDto::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException("No account was found with the provided ID : " + id));
     }
 
     @Override
-    public void delete(int id){
+    public void delete(Integer id){
 
         return repository.deleteById(id);
     }
