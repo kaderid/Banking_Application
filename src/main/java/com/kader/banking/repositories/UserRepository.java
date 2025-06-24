@@ -1,6 +1,6 @@
 package com.kader.banking.repositories;
 
-public interface UserRepository extends JpaRepository<User, int>{
+public interface UserRepository extends JpaRepository<User, Integer>{
 
     List<User> findAllByFirstname(String firstname);
 

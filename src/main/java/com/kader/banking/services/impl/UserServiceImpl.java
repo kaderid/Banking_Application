@@ -5,6 +5,7 @@ package com.kader.banking.services.impl;
 public class UserServiceImpl UserService{
 
     private final UserRepository repository;
+    private final AccountService accountService;
     private final ObjectsValidator<UserDto> validator;
 
     @Override
@@ -32,6 +33,26 @@ public class UserServiceImpl UserService{
     @Override
     public void delete(Integer id){
 
+        return repository.deleteById(id);
+    }
+
+    @Override
+    public Integer validateAccount(Integer id){
+        User user = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No user was found for account validation"));
+        user.setActive(true);
+        AccountDto account = AccountDto.builder()
+                .user(UserDto.fromEntity(user))
+                .build();
+        accountService.save(account);
+        return user.getId();
+    }
+
+    @Override
+    public Integer invalidateAccount(Integer id){
+        User user = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No user was found for account validation"));
+        user.setActive(false);
         return repository.deleteById(id);
     }
 }

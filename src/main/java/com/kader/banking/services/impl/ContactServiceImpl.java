@@ -32,7 +32,14 @@ public class ContactServiceImpl implements ContactService{
 
     @Override
     public void delete(Integer id){
-
         return repository.deleteById(id);
+    }
+
+    @Override
+    public List<ContactDto> findAllByUserId (Integer UserId){
+        return repository.findAllByUserId(id)
+                .stream()
+                .map(ContactDto::fromEntity)
+                .collect(Collectors.toList());
     }
 }

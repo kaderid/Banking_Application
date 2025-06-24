@@ -42,4 +42,13 @@ public class TransactionServiceImpl implements TransactionService{
     private int transactionType(TransactionType type){
         return TransactionType.TRANSFERT == type ? -1 : 1;
     }
+
+    @Override
+    public List<TransactionDto> findAllByUserId (Integer UserId){
+
+        return repository.findAllByUserId(id)
+                .stream()
+                .map(TransactionDto::fromEntity)
+                .collect(Collectors.toList());
+    }
 }

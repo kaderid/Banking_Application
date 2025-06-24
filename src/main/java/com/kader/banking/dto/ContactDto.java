@@ -12,7 +12,7 @@ public class ContactDto {
     private String lastname;
     private String email;
     private String iban;
-    private int userId;
+    private Integer userId;
 
     public static ContactDto fromEntity(Contact contact){
         return ContactDto.builder()

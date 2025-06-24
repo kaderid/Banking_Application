@@ -19,6 +19,15 @@ public class AccountServiceImpl implements AccountService{
         }*/
         validator.validate(dto);
         Account account = AccountDto.toEntity(dto);
+        boolean userHasAlreadyAnAccount = repository.findByUserId(account.getUser().getId()).isPresent();
+        if(userHasAlreadyAnAccount){
+            throw new OperationNonPermittedException(
+                    "The selected user has already an account",
+                    "Create account",
+                    "Account service",
+                    "Account creation"
+            );
+        }
         if(dto.getId() == null){
             account.setIban(generateRandomIban());
         }

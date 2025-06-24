@@ -7,7 +7,7 @@ package com.kader.banking.dto;
 @AllArgsConstructor
 public class TransationDto {
 
-    private int id;
+    private Integer id;
     @Postive
     private BigDecimal amount;
 
@@ -15,7 +15,7 @@ public class TransationDto {
 
     private String destinationIban;
 
-    private int userId;
+    private Integer userId;
 
     public static TransationDto fromEntity(Transaction transaction){
         return TransactionDto.builder()
