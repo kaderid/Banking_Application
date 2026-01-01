@@ -1,7 +1,7 @@
 package com.kader.banking.controllers;
 
 import com.kader.banking.dto.AddressDto;
-import com.kader.banking.services.AdressService;
+import com.kader.banking.services.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddressController {
 
-    private final AdressService service;
+    private final AddressService service;
 
     @PostMapping("/")
     public ResponseEntity<Integer> save(

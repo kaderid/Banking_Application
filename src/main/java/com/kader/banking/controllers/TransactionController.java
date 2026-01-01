@@ -1,11 +1,12 @@
 package com.kader.banking.controllers;
-import com.kader.banking.dto.TransationDto
+import com.kader.banking.dto.TransactionDto;
 
 import com.kader.banking.services.TransactionService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/transaction")
@@ -47,7 +48,7 @@ public class TransactionController {
     public ResponseEntity<List<TransactionDto>> findAllByUserId(
             @PathVariable("user-id") Integer userId
     ){
-        return ResponseEntity.ok(service.findAllByUserId());
+        return ResponseEntity.ok(service.findAllByUserId(userId));
     }
 
 

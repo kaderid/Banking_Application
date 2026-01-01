@@ -1,14 +1,25 @@
 package com.kader.banking.dto;
 
 
+import com.kader.banking.models.Transaction;
+import com.kader.banking.models.TransactionType;
+import com.kader.banking.models.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.validation.constraints.Positive;
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
-public class TransationDto {
+public class TransactionDto {
 
     private Integer id;
-    @Postive
+    @Positive
     private BigDecimal amount;
 
     private TransactionType type;
@@ -17,20 +28,20 @@ public class TransationDto {
 
     private Integer userId;
 
-    public static TransationDto fromEntity(Transaction transaction){
+    public static TransactionDto fromEntity(Transaction transaction){
         return TransactionDto.builder()
                 .id(transaction.getId())
-                .amount(transaction.getAmount)
+                .amount(transaction.getAmount())
                 .type(transaction.getType())
                 .destinationIban(transaction.getDestinationIban())
                 .userId(transaction.getUser().getId())
                 .build();
     }
 
-    public static Transation toEntity(TransactionDto transaction){
+    public static Transaction toEntity(TransactionDto transaction){
         return Transaction.builder()
                 .id(transaction.getId())
-                .amount(transaction.getAmount)
+                .amount(transaction.getAmount())
                 .type(transaction.getType())
                 .destinationIban(transaction.getDestinationIban())
                 .user(

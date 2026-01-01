@@ -1,7 +1,13 @@
 package com.kader.banking.controllers;
 
 
-import org.springframework.web.bind.annotation.PathVariable;
+import com.kader.banking.dto.ContactDto;
+import com.kader.banking.services.ContactService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/adresses")
@@ -34,7 +40,7 @@ public class ContactController {
     public ResponseEntity<List<ContactDto>> findAllByUserId(
             @PathVariable("user-id") Integer userId
     ){
-        return ResponseEntity.ok(service.findAllByUserId());
+        return ResponseEntity.ok(service.findAllByUserId(userId));
     }
 
     @DeleteMapping("/{contact-id}")

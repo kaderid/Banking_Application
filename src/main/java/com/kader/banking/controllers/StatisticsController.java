@@ -3,23 +3,34 @@ package com.kader.banking.controllers;
 
 import com.kader.banking.services.StatisticsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import com.kader.banking.dto.TransactionSumDetails;
+
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Map;
+
 @RestController
-@RequestMapping g("/adresses")
-@RequiredArgsConstructor structor
+@RequestMapping("/adresses")
+@RequiredArgsConstructor
 public class StatisticsController {
 
     private final StatisticsService service;
 
     @GetMapping("/sum-by-date/{user-id}")
-    public ResponseEntity<Map<LocalDate, BigDecimal>> findSumTransactionsByDate(
+    public ResponseEntity<List<TransactionSumDetails>> findSumTransactionsByDate(
             @PathVariable("user-id") Integer userId,
-            @RequestParam("start-date") LocalDate startDate,
-            @RequestParam("end-date") LocalDate endDate
-    ){return ResponseEntity.ok(service.findSumTransactionsByDate(startDate, endDate, userId));
-    }
+            @RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+            @RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate
+    ) {
+        return ResponseEntity.ok(service.findSumTransactionsByDate(startDate, endDate, userId));}
+
 
 
     @GetMapping("/account-balance/{user-id}")
@@ -33,7 +44,7 @@ public class StatisticsController {
     public ResponseEntity<BigDecimal> highestTransfer(
             @PathVariable("user-id") Integer userId){
 
-        return ResponseEntity.ok(service.highestTransfer(userId));
+        return ResponseEntity.ok(service.highestTransfert(userId));
     }
 
 

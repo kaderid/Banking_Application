@@ -1,15 +1,30 @@
 package com.kader.banking.services.impl;
 
 
+import com.kader.banking.dto.TransactionDto;
+import com.kader.banking.dto.UserDto;
+import com.kader.banking.models.Transaction;
+import com.kader.banking.models.TransactionType;
+import com.kader.banking.repositories.TransactionRepository;
+import com.kader.banking.services.TransactionService;
+import com.kader.banking.validators.ObjectsValidator;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
-public class TransactionServiceImpl implements TransactionService{
+public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRepository repository;
     private final ObjectsValidator<TransactionDto> validator;
 
     @Override
-    public Integer save(TransactionDto dto){
+    public Integer save(TransactionDto dto) {
         validator.validate(dto);
         Transaction transaction = TransactionDto.toEntity(dto);
         BigDecimal transactionMultiplier = BigDecimal.valueOf(getTransactionMultiplier(transaction.getType()));
@@ -19,7 +34,7 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public List<TransactionDto> findAll(){
+    public List<TransactionDto> findAll() {
         return repository.findAll()
                 .stream()
                 .map(TransactionDto::fromEntity)
@@ -27,28 +42,28 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public UserDto findById(Integer id){
+    public TransactionDto findById(Integer id) {
         return repository.findById(id)
-                .map(UserDto::fromEntity)
-                .orElseThrow(() -> new EntityNotFoundException("No user was found with the provided ID : " + id));
+                .map(TransactionDto::fromEntity)
+                .orElseThrow(() -> new EntityNotFoundException("No transaction was found with the ID: " + id));
     }
 
     @Override
-    public void delete(Integer id){
-
-        return repository.deleteById(id);
+    public void delete(Integer id) {
+        // todo check delete
+        repository.deleteById(id);
     }
 
-    private int transactionType(TransactionType type){
+    private int getTransactionMultiplier(TransactionType type) {
         return TransactionType.TRANSFERT == type ? -1 : 1;
     }
 
     @Override
-    public List<TransactionDto> findAllByUserId (Integer UserId){
-
-        return repository.findAllByUserId(id)
+    public List<TransactionDto> findAllByUserId(Integer userId) {
+        return repository.findAllByUserId(userId)
                 .stream()
                 .map(TransactionDto::fromEntity)
                 .collect(Collectors.toList());
     }
 }
+

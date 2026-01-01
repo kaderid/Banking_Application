@@ -1,6 +1,13 @@
 package com.kader.banking.dto;
 
 
+import com.kader.banking.models.Address;
+import com.kader.banking.models.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
 @Getter
 @Setter
 @Builder
@@ -16,30 +23,30 @@ public class AddressDto {
     private Integer userId;
 
     public static AddressDto fromEntity(Address address){
-        return addressDto.builder()
-                .id(address.getId())
-                .street(address.getStreet())
-                .houseNumber(adress.getHouseNumber())
-                .zipcode(address.getZipCode())
-                .city(address.getCity())
-                .country(address.getCountry())
-                .userId(address.getUser().getId())
-                .build()
-    }
-
-    public static Address toEntity(AddressDto address){
-        return address.builder()
+        return AddressDto.builder()
                 .id(address.getId())
                 .street(address.getStreet())
                 .houseNumber(address.getHouseNumber())
-                .zipcode(address.getZipCode())
+                .zipCode(address.getZipCode())
+                .city(address.getCity())
+                .country(address.getCountry())
+                .userId(address.getUser().getId())
+                .build();
+    }
+
+    public static Address toEntity(AddressDto address){
+        return Address.builder()
+                .id(address.getId())
+                .street(address.getStreet())
+                .houseNumber(address.getHouseNumber())
+                .zipCode(address.getZipCode())
                 .city(address.getCity())
                 .country(address.getCountry())
                 .user(
                         User.builder()
                                 .id(address.getUserId())
-                                .build
+                                .build()
                 )
-                .build()
+                .build();
     }
 }

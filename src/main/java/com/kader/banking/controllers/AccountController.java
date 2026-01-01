@@ -1,8 +1,7 @@
 package com.kader.banking.controllers;
 
 import com.kader.banking.dto.AccountDto;
-import com.kader.banking.dto.AddressDto;
-import com.kader.banking.services.AdressService;
+import com.kader.banking.services.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

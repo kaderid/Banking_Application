@@ -1,6 +1,13 @@
 package com.kader.banking.repositories;
 
-public interface UserRepository extends JpaRepository<User, Integer>{
+import com.kader.banking.models.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findAllByFirstname(String firstname);
 
@@ -16,7 +23,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
     List<User> searchByFirstname(@Param("fn") String firstname);
 
     @Query("from user where firstname = '%:firstname%'")
-    List<User> searchByFirstname(String firstname);
+    List<User> searchByFirstnameContainingIgnoreCaseAndEmail(String firstname);
 
     @Query("from user u inner join Account a on u.id = a.user.id where a.iban = :iban")
     List<User> searchByIban(String iban);

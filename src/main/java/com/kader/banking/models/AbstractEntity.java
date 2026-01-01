@@ -1,11 +1,28 @@
 package com.kader.banking.models;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import lombok.experimental.SuperBuilder;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.annotation.CreatedDate;
+
+
+
+
+
 
 
 @Data
 @NoArgsConstructor
 @SuperBuilder
-@MappedSuperClass
-@EntityListeners(AuditingEntityListeners.class)
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public class AbstractEntity {
 
     @Id
@@ -14,15 +31,13 @@ public class AbstractEntity {
 
     @CreatedDate
     @Column(
-            name = 'createdDate'
+            name = "createdDate",
             nullable = false,
             updatable = false
     )
-    private localDateTime createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
-    @Column(
-            name = "lastModifiedDate"
-    )
-    private localDateTime lastModifiedDate;
+    @Column(name = "lastModifiedDate")
+    private LocalDateTime lastModifiedDate;
 }

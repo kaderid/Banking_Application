@@ -1,6 +1,12 @@
 package com.kader.banking.dto;
 
 
+import com.kader.banking.models.Account;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
 @Getter
 @Setter
 @Builder
@@ -13,19 +19,19 @@ public class AccountDto {
     private UserDto user;
 
     public static AccountDto fromEntity(Account account){
-        return AccountDtobuilder()
+        return AccountDto.builder()
                 .id(account.getId())
                 .iban(account.getIban())
-                .user(userDto.fromEntity(account.getUser()))
-                .build()
+                .user(UserDto.fromEntity(account.getUser()))
+                .build();
     }
 
     public static Account toEntity(AccountDto account){
         return Account.builder()
                 .id(account.getId())
                 .iban(account.getIban())
-                .user(userDto.toEntity(account.getUser()))
-                .build()
+                .user(UserDto.toEntity(account.getUser()))
+                .build();
     }
 
 

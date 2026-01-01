@@ -1,8 +1,18 @@
 package com.kader.banking.services;
 
+import com.kader.banking.dto.TransactionSumDetails;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+
 public interface StatisticsService {
 
-    Map<LocalDate, BigDecimal> findSumTransactionsByDate(LocalDate startDate, LocalDate endDate, Integer userId);
+    List<TransactionSumDetails> findSumTransactionsByDate(
+            LocalDate startDate,
+            LocalDate endDate,
+            Integer userId
+    );
 
     BigDecimal getAccountBalance(Integer userId);
 

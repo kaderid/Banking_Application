@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -15,9 +17,9 @@ public class UserController {
 
     @PostMapping("/")
     public ResponseEntity<Integer> save(
-            @RequestBody UserDto userDto;
+            @RequestBody UserDto userDto
     ){
-        return ResponseEntity.ok(service.save());
+        return ResponseEntity.ok(service.save(userDto));
     }
 
 
@@ -30,7 +32,7 @@ public class UserController {
     public ResponseEntity<UserDto> findById(
             @PathVariable("user-id") Integer userId
     ){
-        return ResponseEntity.ok(service.findbyId(userId));
+        return ResponseEntity.ok(service.findById(userId));
     }
 
     @PatchMapping("/validate/{user-id}")

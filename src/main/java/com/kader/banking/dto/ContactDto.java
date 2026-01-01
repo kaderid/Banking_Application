@@ -1,5 +1,9 @@
 package com.kader.banking.dto;
 
+import com.kader.banking.models.Contact;
+import com.kader.banking.models.User;
+import lombok.*;
+
 @Getter
 @Setter
 @Builder
@@ -17,26 +21,26 @@ public class ContactDto {
     public static ContactDto fromEntity(Contact contact){
         return ContactDto.builder()
                 .id(contact.getId())
-                .firstname(contact.getFirstname());
-                .lastname(contact.getLastname());
-                .email(contact.getEmail());
-                .iban(contact.getIban());
+                .firstname(contact.getFirstname())
+                .lastname(contact.getLastname())
+                .email(contact.getEmail())
+                .iban(contact.getIban())
                 .userId(contact.getUser().getId())
-                .build()
+                .build();
     }
 
     public static Contact toEntity(ContactDto contact){
         return Contact.builder()
                 .id(contact.getId())
-                .firstname(contact.getFirstname());
-                .lastname(contact.getLastname());
-                .email(contact.getEmail());
-                .iban(contact.getIban());
+                .firstname(contact.getFirstname())
+                .lastname(contact.getLastname())
+                .email(contact.getEmail())
+                .iban(contact.getIban())
                 .user(
                         User.builder()
                                 .id(contact.getUserId())
                                 .build()
         )
-                .build()
+                .build();
     }
 }

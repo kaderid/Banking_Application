@@ -1,5 +1,9 @@
 package com.kader.banking.services;
 
-public class TransactionService extends AbstractService<TransactionDto>{
-    List<TransactionDto> findAllByUserId(Integer userId)
+import com.kader.banking.dto.TransactionDto;
+
+import java.util.List;
+
+public interface TransactionService extends AbstractService<TransactionDto>{
+    List<TransactionDto> findAllByUserId(Integer userId);
 }

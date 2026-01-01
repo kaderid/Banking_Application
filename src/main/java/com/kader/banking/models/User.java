@@ -1,10 +1,15 @@
 package com.kader.banking.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +21,8 @@ public class User extends AbstractEntity {
 
     private String firstname;
     private String lastname;
+
+    @Column(unique = true)
     private String email;
     private String password;
     private boolean active;

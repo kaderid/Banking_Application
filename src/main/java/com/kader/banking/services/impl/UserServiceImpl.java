@@ -1,15 +1,30 @@
 package com.kader.banking.services.impl;
 
+import com.kader.banking.dto.AccountDto;
+import com.kader.banking.dto.UserDto;
+import com.kader.banking.models.User;
+import com.kader.banking.repositories.UserRepository;
+import com.kader.banking.services.AccountService;
+import com.kader.banking.services.UserService;
+import com.kader.banking.validators.ObjectsValidator;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
     private final AccountService accountService;
     private final ObjectsValidator<UserDto> validator;
 
     @Override
-    public int save(UserDto dto){
+    public Integer save(UserDto dto){
         validator.validate(dto);
         User user = UserDto.toEntity(dto);
         return repository.save(user).getId();
@@ -33,10 +48,11 @@ public class UserServiceImpl UserService{
     @Override
     public void delete(Integer id){
 
-        return repository.deleteById(id);
+         repository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public Integer validateAccount(Integer id){
         User user = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No user was found for account validation"));
@@ -53,6 +69,6 @@ public class UserServiceImpl UserService{
         User user = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No user was found for account validation"));
         user.setActive(false);
-        return repository.deleteById(id);
+        return user.getId();
     }
 }
